@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Popup from './components/Popup';
+import ContactForm from './components/ContactForm';
 
 class App extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
 
                 {this.state.showPopup ?
                     <Popup closePopup={this.togglePopup}>
-                        <div/>
+                        <ContactForm/>
                     </Popup>
                     : null
                 }
