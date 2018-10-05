@@ -1,5 +1,6 @@
 import React from 'react';
-import ImagePlaceholder from './ImagePlaceholder';
+import styled from 'styled-components';
+import Image from '../images/placeholder-contact.png';
 
 const ContactForm = () => (
     <form>
@@ -21,8 +22,8 @@ const ContactForm = () => (
                     Date of birth <input/>
                 </label>
             </div>
-            <div style={{width: "100px", height: "100px"}}>
-                <ImagePlaceholder/>
+            <div>
+                <img src={Image}/>
             </div>
         </div>
         <div>
@@ -30,5 +31,8 @@ const ContactForm = () => (
         </div>
     </form>
 );
+
+//STYLES
+
 
 export default ContactForm;

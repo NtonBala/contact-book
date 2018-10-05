@@ -1,34 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
 import './App.css';
 import Popup from './components/Popup';
 import ContactForm from './components/ContactForm';
+import {SHOW_POPUP, HIDE_POPUP} from "./constants/actionTypes";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showPopup: false
-        };
-    }
-    togglePopup = () => {
-        this.setState({
-            showPopup: !this.state.showPopup
-        });
-    };
-    render() {
-        return (
-            <div className='app'>
-                <button onClick={this.togglePopup}>Add Contact</button>
+const App = ({isPopup, showPopup, hidePopup}) => (
+    <div className='app'>
+        <button onClick={showPopup}>Add Contact</button>
 
-                {this.state.showPopup ?
-                    <Popup closePopup={this.togglePopup}>
-                        <ContactForm/>
-                    </Popup>
-                    : null
-                }
-            </div>
-        );
-    }
-}
+        {isPopup ?
+            <Popup closePopup={hidePopup}>
+                <ContactForm/>
+            </Popup>
+            : null
+        }
+    </div>
+);
 
-export default App;
+const mapStateToProps = state => ({
+    isPopup: state.isPopup
+});
+
+const mapDispatchToProps = dispatch => ({
+    showPopup: () => dispatch({type: SHOW_POPUP}),
+    hidePopup: () => dispatch({type: HIDE_POPUP})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
